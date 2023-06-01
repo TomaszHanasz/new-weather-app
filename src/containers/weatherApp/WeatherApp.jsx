@@ -32,7 +32,6 @@ const WeatherApp = () => {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=imperial&appid=355cf3bff397cfe55bf144d10da9b2d8`
       );
-      console.log("response", response);
       const { data } = response;
       setCity(data.name);
       setTemperature(data.main.temp.toFixed(0));
@@ -41,7 +40,6 @@ const WeatherApp = () => {
       setHumidity(data.main.humidity);
       setWind(data.wind.speed);
       setIcon(data.weather[0].icon);
-      console.log(icon);
     } catch (error) {
       console.log(error);
     }
