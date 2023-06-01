@@ -81,10 +81,10 @@ const WeatherInfo = (props) => {
     <div className="weather-info">
       <h3>{city}</h3>
       <img src={imageSrc} alt="weather" />
-      <p className="temp">{temperature}℉</p>
+      <p className="temp">{temperature} ℉</p>
       <div className="description">
         <p className="description-item">{description}</p>
-        <p className="description-item">Feels like: {feelsLike}℉</p>
+        <p className="description-item">Feels like: {feelsLike} ℉</p>
         <p className="description-item">Humidity: {humidity} %</p>
         <p className="description-item">Wind: {wind} mph</p>
       </div>
