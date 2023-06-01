@@ -18,7 +18,7 @@ const WeatherApp = () => {
 
   useEffect(() => {
     getSearchedCity();
-  }, []);
+  }, [city]);
 
   const onChangeHandler = (e) => {
     setSearchedCity(e.target.value);
