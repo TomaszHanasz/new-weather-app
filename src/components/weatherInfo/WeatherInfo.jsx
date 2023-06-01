@@ -80,7 +80,7 @@ const WeatherInfo = (props) => {
   return (
     <div className="weather-info">
       <h3>{city}</h3>
-      <img src={imageSrc} />
+      <img src={imageSrc} alt="weather" />
       <p className="temp">{temperature}℉</p>
       <div className="description">
         <p className="description-item">{description}</p>
