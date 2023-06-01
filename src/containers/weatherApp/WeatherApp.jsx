@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -16,17 +16,21 @@ const WeatherApp = () => {
   const [wind, setWind] = useState(0);
   const [searchedCity, setSearchedCity] = useState(lastCity);
 
+  useEffect(() => {
+    getSearchedCity();
+  }, []);
+
   const onChangeHandler = (e) => {
     setSearchedCity(e.target.value);
   };
 
   const onKeyDownHandler = (e) => {
     if (e.key === "Enter") {
-      onClickHandler();
+      getSearchedCity();
     }
   };
 
-  const onClickHandler = async () => {
+  const getSearchedCity = async () => {
     try {
       localStorage.setItem("Storage", searchedCity);
       const response = await axios.get(
@@ -71,7 +75,7 @@ const WeatherApp = () => {
       />
       <Button
         variant="contained"
-        onClick={onClickHandler}
+        onClick={getSearchedCity}
         style={{ borderRadius: "0" }}
       >
         Get weather
