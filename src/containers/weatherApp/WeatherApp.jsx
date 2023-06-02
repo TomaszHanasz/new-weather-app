@@ -3,7 +3,7 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
-import { getTodaysDay, getMonth } from "../../utils/helperFunctions";
+import { getTodaysDay } from "../../utils/helperFunctions";
 import "./weatherApp.style.css";
 
 const WeatherApp = () => {
@@ -20,6 +20,14 @@ const WeatherApp = () => {
 
   useEffect(() => {
     getSearchedCity(); // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    const clock = setInterval(() => {
+      setTodaysDate(new Date());
+    }, 1000);
+
+    return () => clearInterval(clock);
   }, []);
 
   const onChangeHandler = (e) => {
@@ -68,8 +76,7 @@ const WeatherApp = () => {
           />
           <p>{todaysDate.toLocaleTimeString()}</p>
           <p>{todaysDate.toLocaleDateString()}</p>
-          <p>Happy {getTodaysDay()}</p>
-          <p>{getMonth()}</p>
+          <p>Have a good {getTodaysDay()}!</p>
         </>
       )}
       <TextField
@@ -89,6 +96,7 @@ const WeatherApp = () => {
       >
         Get weather
       </Button>
+      <p>Copyrights Tomasz Hanasz {todaysDate.getFullYear()}</p>
     </div>
   );
 };
