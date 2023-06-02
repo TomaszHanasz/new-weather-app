@@ -74,7 +74,7 @@ const WeatherApp = () => {
             temperature={temperature}
             icon={icon}
           />
-          <p>{todaysDate.toLocaleTimeString()}</p>
+          <p style={{ fontSize: "2rem" }}>{todaysDate.toLocaleTimeString()}</p>
           <p>{todaysDate.toLocaleDateString()}</p>
           <p>Have a good {getTodaysDay()}!</p>
         </>
