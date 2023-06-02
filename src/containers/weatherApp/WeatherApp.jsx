@@ -3,6 +3,7 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import WeatherInfo from "../../components/weatherInfo/WeatherInfo";
+import { getTodaysDay, getMonth } from "../../utils/helperFunctions";
 import "./weatherApp.style.css";
 
 const WeatherApp = () => {
@@ -15,10 +16,11 @@ const WeatherApp = () => {
   const [humidity, setHumidity] = useState(0);
   const [wind, setWind] = useState(0);
   const [searchedCity, setSearchedCity] = useState(lastCity);
+  const [todaysDate, setTodaysDate] = useState(new Date());
 
   useEffect(() => {
-    getSearchedCity();
-  }, [city]);
+    getSearchedCity(); // eslint-disable-next-line
+  }, []);
 
   const onChangeHandler = (e) => {
     setSearchedCity(e.target.value);
@@ -44,6 +46,8 @@ const WeatherApp = () => {
       setHumidity(data.main.humidity);
       setWind(data.wind.speed);
       setIcon(data.weather[0].icon);
+      setTodaysDate(new Date());
+      console.log(getTodaysDay());
     } catch (error) {
       console.log(error);
     }
@@ -52,17 +56,22 @@ const WeatherApp = () => {
   return (
     <div className="weather-app-container">
       {city && (
-        <WeatherInfo
-          city={city}
-          humidity={humidity}
-          description={description}
-          feelsLike={feelsLike}
-          wind={wind}
-          temperature={temperature}
-          icon={icon}
-        />
+        <>
+          <WeatherInfo
+            city={city}
+            humidity={humidity}
+            description={description}
+            feelsLike={feelsLike}
+            wind={wind}
+            temperature={temperature}
+            icon={icon}
+          />
+          <p>{todaysDate.toLocaleTimeString()}</p>
+          <p>{todaysDate.toLocaleDateString()}</p>
+          <p>Happy {getTodaysDay()}</p>
+          <p>{getMonth()}</p>
+        </>
       )}
-
       <TextField
         id="filled-basic"
         label="Enter city name"
